@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 40px;
+            background: #0f172a;
+            color: #f1f5f9;
+        }
+        .status {
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        .success {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: #10b981;
+        }
+        .error {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+        }
+        pre {
+            background: #1e293b;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Web3.js Loading Test</h1>
+
+    <div id="results"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <script>
+        const results = document.getElementById('results');
+
+        function addStatus(message, success = true) {
+            const div = document.createElement('div');
+            div.className = `status ${success ? 'success' : 'error'}`;
+            div.textContent = (success ? '✅ ' : '❌ ') + message;
+            results.appendChild(div);
+        }
+
+        // Test 1: Check if Web3 is defined
+        if (typeof Web3 === 'undefined') {
+            addStatus('Web3 is NOT defined - CDN failed to load', false);
+        } else {
+            addStatus('Web3 is defined - CDN loaded successfully');
+
+            // Test 2: Check Web3 version
+            const version = Web3.version;
+            addStatus(`Web3 version: ${version}`);
+
+            // Test 3: Try to create Web3 instance
+            try {
+                const web3 = new Web3('https://rpc.pulsechain.com');
+                addStatus('Web3 instance created successfully');
+
+                // Test 4: Try to get chain ID
+                web3.eth.getChainId().then(chainId => {
+                    addStatus(`Connected to PulseChain (Chain ID: ${chainId})`);
+                }).catch(err => {
+                    addStatus(`Failed to get chain ID: ${err.message}`, false);
+                });
+
+                // Test 5: Check if MetaMask is installed
+                if (typeof window.ethereum !== 'undefined') {
+                    addStatus('MetaMask (or compatible wallet) detected');
+
+                    // Show MetaMask details
+                    const pre = document.createElement('pre');
+                    pre.textContent = `Provider Details:\n` +
+                        `- Selected Address: ${window.ethereum.selectedAddress || 'Not connected'}\n` +
+                        `- Chain ID: ${window.ethereum.chainId || 'Unknown'}\n` +
+                        `- Network Version: ${window.ethereum.networkVersion || 'Unknown'}`;
+                    results.appendChild(pre);
+                } else {
+                    addStatus('MetaMask not detected', false);
+                }
+
+            } catch (error) {
+                addStatus(`Error creating Web3 instance: ${error.message}`, false);
+            }
+        }
+
+        // Test 6: Check if scripts can be loaded
+        setTimeout(() => {
+            addStatus('All tests completed');
+        }, 2000);
+    </script>
+</body>
+</html>

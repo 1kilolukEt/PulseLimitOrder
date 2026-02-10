@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Precision Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 40px;
+            background: #0f172a;
+            color: #f1f5f9;
+        }
+        .test {
+            padding: 15px;
+            margin: 10px 0;
+            background: #1e293b;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        .pass { border-left-color: #10b981; }
+        .fail { border-left-color: #ef4444; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Price Precision Test</h1>
+    <div id="results"></div>
+
+    <script src="js/config.js"></script>
+    <script>
+        const results = document.getElementById('results');
+
+        function test(name, expected, actual) {
+            const pass = expected === actual;
+            const div = document.createElement('div');
+            div.className = `test ${pass ? 'pass' : 'fail'}`;
+            div.innerHTML = `
+                <strong>${pass ? '✅' : '❌'} ${name}</strong><br>
+                Expected: ${expected}<br>
+                Actual: ${actual}<br>
+                ${pass ? '<em>PASS</em>' : '<em style="color: #ef4444;">FAIL</em>'}
+            `;
+            results.appendChild(div);
+        }
+
+        // Test case from user: tick for 0.000008800
+        // This tick value converts to approximately 0.000008800
+        const testTick = -161234;  // Example tick
+        const decimals0 = 18;  // PLSX
+        const decimals1 = 18;  // DAI
+
+        console.log('Testing tick:', testTick);
+
+        // Convert tick to price
+        const price = TICK_MATH.tickToHumanPrice(testTick, decimals0, decimals1);
+        console.log('Converted price:', price);
+
+        // Format for display
+        const formatted = UTILS.formatPrice(price);
+        console.log('Formatted price:', formatted);
+
+        // Test rounding function directly
+        const testNum = 0.00000880039847;
+        const rounded = TICK_MATH.roundToSignificantFigures(testNum, 10);
+        console.log('Direct rounding test:', testNum, '→', rounded);
+
+        test('Price should not have trailing garbage', '0.000008800', formatted.substring(0, 12));
+        test('Rounded value should be clean', true, rounded.toString().length < 15);
+        test('Price should be approximately 0.0000088', true, Math.abs(price - 0.0000088) < 0.0000001);
+
+        // Test formatPrice directly
+        const testPrice1 = 0.00000880039847;
+        const formatted1 = UTILS.formatPrice(testPrice1);
+        test('formatPrice(0.00000880039847)', '0.0000088', formatted1);
+
+        const testPrice2 = 0.0000088;
+        const formatted2 = UTILS.formatPrice(testPrice2);
+        test('formatPrice(0.0000088)', '0.0000088', formatted2);
+
+        // Summary
+        const summary = document.createElement('div');
+        summary.className = 'test';
+        summary.style.marginTop = '30px';
+        summary.innerHTML = `
+            <strong>Summary</strong><br>
+            If all tests pass, price precision is fixed!<br>
+            If any fail, there's still an issue with rounding/formatting.
+        `;
+        results.appendChild(summary);
+    </script>
+</body>
+</html>
