@@ -1,0 +1,2 @@
+rsync -anv --exclude='.git' --exclude='.gitignore' --exclude='.gitmodules' ../pulsechain-rebalancer/website/ ../website-public/
+rsync -av --exclude='.git' --exclude='.gitignore' --exclude='.gitmodules' ../pulsechain-rebalancer/website/ ../website-public/
