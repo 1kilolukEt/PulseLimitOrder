@@ -1,3 +1,17 @@
+I want to display the information like 🔒 How It Works - You Stay in Control
+🔐 Security Guarantee - Your Funds Are Safe:
+💡 Advanced Use Cases
+📚 Understanding One-Sided LP Positions:
+⚙️ How The Service Works
+
+
+My position | active Orders | history
+should be at the top website
+
+
+ before the wallet is connected not after.
+
+
 bot also I think rounds to tick is that necessary I think not
 
 show succesfull closed positions

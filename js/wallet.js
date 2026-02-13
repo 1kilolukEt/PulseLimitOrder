@@ -131,7 +131,6 @@ class WalletService {
         const mainContent = document.getElementById('mainContent');
         const networkInfo = document.getElementById('networkInfo');
         const networkName = document.getElementById('networkName');
-        const howItWorks = document.getElementById('howItWorks');
 
         if (this.connected) {
             connectBtn.style.display = 'none';
@@ -140,7 +139,6 @@ class WalletService {
             mainContent.style.display = 'block';
             networkInfo.style.display = 'flex';
             networkName.textContent = CONFIG.NETWORK_NAME;
-            howItWorks.style.display = 'block';
 
             // Update contract address in footer
             document.getElementById('contractAddress').textContent = UTILS.shortenAddress(CONFIG.LP_POSITION_MANAGER);
@@ -149,7 +147,6 @@ class WalletService {
             walletInfo.style.display = 'none';
             mainContent.style.display = 'none';
             networkInfo.style.display = 'none';
-            howItWorks.style.display = 'none';
         }
     }
 
