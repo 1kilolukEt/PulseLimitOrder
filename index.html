@@ -40,25 +40,282 @@
                 The bot monitors 24/7 and executes automatically when your target is reached.
             </div>
 
+            <!-- Security Guarantee -->
+            <div class="info-note" style="margin-bottom: 30px; background: rgba(16, 185, 129, 0.15); border-color: #10b981;">
+                <strong>🔐 Security Guarantee - Your Funds Are Safe:</strong><br>
+                <br>
+                <strong>What the contract CAN do:</strong><br>
+                ✅ Close your LP position when your target price is reached<br>
+                ✅ Send you 100% of your capital + 90% of fees<br>
+                ✅ Take the 3,000 PLS execution deposit (covers bot's gas cost)<br>
+                ✅ Take 10% service fee from earned LP fees only (not your capital)<br>
+                <br>
+                <strong>What the contract CANNOT do:</strong><br>
+                ❌ <strong>Cannot</strong> transfer your NFT to anyone else<br>
+                ❌ <strong>Cannot</strong> execute if target price not reached<br>
+                ❌ <strong>Cannot</strong> take any of your LP capital<br>
+                ❌ <strong>Cannot</strong> close your position until you approve it<br>
+                <br>
+                <strong>You keep full control:</strong> You own the NFT. You can cancel the order anytime and get your 3,000 PLS back. The contract only has permission to close (not transfer), and only when your chosen target price is reached.
+            </div>
+
+            <!-- Use Cases -->
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">💡 Advanced Use Cases</h3>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">💱</div>
+                    <h4>LP as Buy/Sell Orders</h4>
+                    <p><strong>One-sided LP positions</strong> work like limit orders:</p>
+                    <ul style="text-align: left; margin-top: 10px; font-size: 0.9em; line-height: 1.6;">
+                        <li><strong>Want to BUY PLSX?</strong> Create LP position with <strong>only DAI</strong>, set range BELOW current price. When price drops into your range, you'll buy PLSX. Set close target ABOVE to sell at profit.</li>
+                        <li><strong>Want to SELL PLSX?</strong> Create LP position with <strong>only PLSX</strong>, set range ABOVE current price. When price rises, you'll sell PLSX. Set close target BELOW to rebuy cheaper.</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><em>Bonus: You earn LP fees while waiting!</em></p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">🛡️</div>
+                    <h4>IL Protection for Yield Farmers</h4>
+                    <p><strong>Stop impermanent loss</strong> while farming:</p>
+                    <ul style="text-align: left; margin-top: 10px; font-size: 0.9em; line-height: 1.6;">
+                        <li>Farming PLSX/DAI for yield? Set a limit order to close if price moves 20% in either direction.</li>
+                        <li>This locks in your profit and protects against <strong>impermanent loss</strong> during big price swings.</li>
+                        <li>You get yield until the limit order triggers, then exit with profits intact.</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><em>Example: LP at $1.00, close if price hits $0.80 or $1.20</em></p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">🎯</div>
+                    <h4>Automated Take Profit</h4>
+                    <p><strong>Set it and forget it:</strong></p>
+                    <ul style="text-align: left; margin-top: 10px; font-size: 0.9em; line-height: 1.6;">
+                        <li>Providing liquidity while price is favorable? Set a target to auto-close when price moves against you.</li>
+                        <li>No need to monitor 24/7 - the bot watches for you and executes instantly.</li>
+                        <li>Perfect for concentrated liquidity positions where you want to exit at specific price levels.</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><em>Sleep well knowing your position will close automatically!</em></p>
+                </div>
+            </div>
+
+            <!-- How LP Positions Become One-Sided -->
+            <div class="info-note" style="margin-top: 30px; background: rgba(168, 85, 247, 0.15); border-color: #a855f7;">
+                <strong>📚 Understanding One-Sided LP Positions:</strong><br>
+                <br>
+                When you create a concentrated liquidity position on 9mm/Uniswap V3, you set a <strong>price range</strong>. As price moves, your position composition changes:
+                <br><br>
+                <strong>Price BELOW your range:</strong> Position converts to 100% token1 (e.g., all DAI)<br>
+                <strong>Price WITHIN your range:</strong> Position has both tokens (earning fees)<br>
+                <strong>Price ABOVE your range:</strong> Position converts to 100% token0 (e.g., all PLSX)
+                <br><br>
+                <strong>This is powerful:</strong> You can create a position with only DAI, set a narrow range below current price, and it acts as a <strong>buy order</strong> that earns fees while waiting! When price enters your range, you automatically buy PLSX, then our limit order can auto-close at your target profit price.
+            </div>
+
+            <!-- Basic Info Cards -->
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">⚙️ How The Service Works</h3>
+
             <div class="info-grid">
                 <div class="info-card">
                     <div class="info-icon">🔑</div>
-                    <h4>You Keep Control</h4>
-                    <p>You maintain full ownership of your NFT. The contract can <strong>only</strong> execute the close position command when your limit order target is reached - nothing else.</p>
+                    <h4>You Keep Full Control</h4>
+                    <p>You maintain <strong>100% ownership</strong> of your NFT. The contract can <strong>only</strong> close your position (not transfer it). You can cancel anytime and get your 3,000 PLS deposit back immediately.</p>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">💰</div>
                     <h4>100% Capital + 90% Fees</h4>
-                    <p>You receive <strong>100% of your LP capital</strong> and <strong>90% of earned fees</strong> when the order executes. Your funds are always yours.</p>
+                    <p>You receive <strong>100% of your LP capital</strong> and <strong>90% of earned fees</strong> when the order executes. The 10% service fee only applies to LP trading fees earned, never your principal.</p>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">🤖</div>
-                    <h4>10% Service Fee</h4>
-                    <p>A <strong>10% fee on earned fees only</strong> goes to the creator to maintain the automated bot that monitors prices 24/7 and executes your orders.</p>
+                    <h4>Automated Execution</h4>
+                    <p>The bot monitors prices 24/7 and executes within seconds when your target is reached. You pay 3,000 PLS upfront (refundable deposit) to cover the bot's gas costs for execution.</p>
                 </div>
             </div>
-            <div class="info-note">
-                <strong>💡 Note:</strong> You pay 3,000 PLS upfront as a refundable deposit (covers execution gas). This is fully refunded when the order executes or is cancelled.
+
+            <div class="info-note" style="margin-top: 20px;">
+                <strong>💡 Refundable Deposit:</strong> The 3,000 PLS deposit covers execution gas costs. It's fully refunded when you cancel an order. When an order executes, the bot keeps the deposit to cover gas spent on closing your position.
+            </div>
+
+            <!-- Learn More Toggle -->
+            <div style="text-align: center; margin-top: 30px;">
+                <button id="learnMoreToggle" class="btn btn-secondary" style="padding: 12px 30px;">
+                    📚 Learn More - Complete Examples & Strategies
+                </button>
+            </div>
+
+            <!-- Detailed Examples (Hidden by default) -->
+            <div id="learnMoreContent" style="display: none; margin-top: 30px; padding-top: 30px; border-top: 2px solid var(--border);">
+                <h3 style="margin-bottom: 20px;">📚 Complete Strategy Examples</h3>
+
+                <!-- Example 1: Buy Low Sell High -->
+                <div class="info-card" style="margin-bottom: 20px;">
+                    <h4 style="color: var(--primary);">Example 1: Buy Low, Sell High with LP</h4>
+                    <p><strong>Goal:</strong> Buy PLSX at $0.000080, sell at $0.000120</p>
+
+                    <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 0.9em;">
+                        <strong>Current price:</strong> $0.000100<br><br>
+
+                        <strong>Step 1:</strong> Create BUY position on 9mm DEX<br>
+                        • Deposit: 1,000 DAI (only)<br>
+                        • Range: $0.000078 to $0.000082 (below current)<br>
+                        • Result: Position inactive (will activate when price drops)<br><br>
+
+                        <strong>Step 2:</strong> Wait for entry<br>
+                        • Price drops to $0.000080<br>
+                        • Your DAI converts to ~12,500,000 PLSX<br>
+                        • You earn fees during conversion 🎉<br><br>
+
+                        <strong>Step 3:</strong> Set SELL limit order (on this website)<br>
+                        • Target: $0.000120 (ABOVE current)<br>
+                        • Bot monitors 24/7<br><br>
+
+                        <strong>Step 4:</strong> Automatic exit<br>
+                        • PLSX hits $0.000120<br>
+                        • Bot closes position<br>
+                        • You receive: $1,500 worth of PLSX + fees<br>
+                        • Profit: $500 + fees earned! 💰
+                    </div>
+
+                    <p><em>Better than CEX limit orders because you earn LP fees while waiting!</em></p>
+                </div>
+
+                <!-- Example 2: IL Protection -->
+                <div class="info-card" style="margin-bottom: 20px;">
+                    <h4 style="color: var(--success);">Example 2: Yield Farm with IL Protection</h4>
+                    <p><strong>Goal:</strong> Farm 60% APY, but limit impermanent loss to 5%</p>
+
+                    <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 0.9em;">
+                        <strong>Current price:</strong> PLSX = $0.000100<br><br>
+
+                        <strong>Step 1:</strong> Create balanced LP on 9mm DEX<br>
+                        • Deposit: 5,000 DAI + 50,000,000 PLSX<br>
+                        • Range: $0.000080 to $0.000120 (±20%)<br>
+                        • Expected APY: 60%<br><br>
+
+                        <strong>Step 2:</strong> Set protective limit order<br>
+                        • Target: $0.000076 (24% drop)<br>
+                        • This limits IL to ~4%<br><br>
+
+                        <strong>Scenario A - Price stable for 3 months:</strong><br>
+                        • Earned: 60% APY × 3/12 = 15% 📈<br>
+                        • IL: 0% (price didn't move)<br>
+                        • Net: +15% WIN!<br><br>
+
+                        <strong>Scenario B - Price drops 25% after 1 month:</strong><br>
+                        • Earned: 60% APY × 1/12 = 5%<br>
+                        • IL: -4% (bot auto-closed)<br>
+                        • Net: +1% (small win, avoided major IL!)<br><br>
+
+                        <strong>Scenario C - No limit order set:</strong><br>
+                        • Price drops 50%<br>
+                        • IL: -20% 😱<br>
+                        • Net: -20% + fees (BIG LOSS)
+                    </div>
+
+                    <p><em>Key insight: Capture yield while stable, exit automatically before major IL!</em></p>
+                </div>
+
+                <!-- Example 3: Sell High -->
+                <div class="info-card" style="margin-bottom: 20px;">
+                    <h4 style="color: var(--warning);">Example 3: Sell Rally, Rebuy Dip</h4>
+                    <p><strong>Goal:</strong> Sell PLSX at top, rebuy 26% more coins</p>
+
+                    <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 0.9em;">
+                        <strong>Starting position:</strong> You own 100M PLSX worth $10,000<br><br>
+
+                        <strong>Step 1:</strong> Create SELL position on 9mm DEX<br>
+                        • Deposit: 100,000,000 PLSX (only)<br>
+                        • Range: $0.000118 to $0.000122 (above current)<br>
+                        • Position inactive (activates on rally)<br><br>
+
+                        <strong>Step 2:</strong> Price rallies to $0.000120<br>
+                        • Your PLSX converts to ~$12,000 DAI<br>
+                        • You earned fees during the sale!<br><br>
+
+                        <strong>Step 3:</strong> Set REBUY limit order<br>
+                        • Target: $0.000095 (21% below)<br>
+                        • Bot waits for dip<br><br>
+
+                        <strong>Step 4:</strong> Price drops to $0.000095<br>
+                        • Bot closes, you get 12,000 DAI<br>
+                        • Rebuy: 126,315,789 PLSX<br>
+                        • Profit: 26,315,789 PLSX (26% more!) 🚀
+                    </div>
+
+                    <p><em>Sell high, buy low, stack more coins - the dream!</em></p>
+                </div>
+
+                <!-- Technical Explanation -->
+                <div class="info-note" style="margin-top: 30px; background: rgba(147, 51, 234, 0.15); border-color: #9333ea;">
+                    <strong>🔬 Technical: How One-Sided LP Positions Work</strong><br><br>
+
+                    In Uniswap V3 / 9mm Pro, you choose a <strong>price range</strong> for your liquidity. As price moves, your position composition changes:<br><br>
+
+                    <strong>Price BELOW range → 100% token1 (e.g., all DAI)</strong><br>
+                    <strong>Price WITHIN range → Mixed tokens (earning fees!)</strong><br>
+                    <strong>Price ABOVE range → 100% token0 (e.g., all PLSX)</strong><br><br>
+
+                    <strong>Example:</strong> You create LP with 1000 DAI, range $0.000080-$0.000082, current price $0.000100<br>
+                    • Price is above your range → Position stays 100% DAI<br>
+                    • Price drops to $0.000082 → Position activates!<br>
+                    • Price drops to $0.000080 → You now own 100% PLSX (~12.5M tokens)<br>
+                    • Your DAI was gradually converted to PLSX as price fell<br>
+                    • You earned fees during every swap! 💰<br><br>
+
+                    This is why LP positions are better than CEX limit orders - you <strong>earn fees while waiting and during execution</strong>!
+                </div>
+
+                <!-- Fee Breakdown -->
+                <div class="info-note" style="margin-top: 20px;">
+                    <strong>💵 Fee Breakdown Example</strong><br><br>
+
+                    <strong>Scenario:</strong> You farm $10,000 LP for 2 months, earn $200 in fees, close with our limit order<br><br>
+
+                    <strong>What you receive:</strong><br>
+                    • $10,000 - Your full capital (100%)<br>
+                    • $180 - Your share of fees (90%)<br>
+                    • Total: $10,180<br><br>
+
+                    <strong>Service fees:</strong><br>
+                    • $20 - Service fee (10% of $200 fees, NOT your capital)<br>
+                    • 3,000 PLS - Kept by bot (covers gas)<br><br>
+
+                    <strong>Net profit:</strong> ~$157 after fees<br><br>
+
+                    <em>Note: The 10% service fee ONLY applies to LP trading fees earned, never your principal!</em>
+                </div>
+
+                <!-- Quick Tips -->
+                <div class="info-grid" style="margin-top: 30px;">
+                    <div class="info-card">
+                        <h4>✅ Best Practices</h4>
+                        <ul style="text-align: left; font-size: 0.9em; line-height: 1.6;">
+                            <li>Start small to learn</li>
+                            <li>Set realistic price targets</li>
+                            <li>Use IL protection for farming</li>
+                            <li>Check positions regularly</li>
+                            <li>Keep extra PLS for gas</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h4>❌ Common Mistakes</h4>
+                        <ul style="text-align: left; font-size: 0.9em; line-height: 1.6;">
+                            <li>Using last 3000 PLS for deposit</li>
+                            <li>Setting unrealistic targets</li>
+                            <li>Forgetting about slippage</li>
+                            <li>Expecting instant execution</li>
+                            <li>Panicking when position "inactive"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Close Button -->
+                <div style="text-align: center; margin-top: 30px;">
+                    <button id="learnMoreClose" class="btn btn-secondary">
+                        Hide Details
+                    </button>
+                </div>
             </div>
         </div>
 

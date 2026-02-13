@@ -78,6 +78,33 @@ function setupEventListeners() {
             }
         });
     });
+
+    // Learn More toggle
+    const learnMoreToggle = document.getElementById('learnMoreToggle');
+    const learnMoreClose = document.getElementById('learnMoreClose');
+    const learnMoreContent = document.getElementById('learnMoreContent');
+
+    if (learnMoreToggle) {
+        learnMoreToggle.addEventListener('click', () => {
+            learnMoreContent.style.display = 'block';
+            learnMoreToggle.style.display = 'none';
+            // Smooth scroll to content
+            setTimeout(() => {
+                learnMoreContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        });
+    }
+
+    if (learnMoreClose) {
+        learnMoreClose.addEventListener('click', () => {
+            learnMoreContent.style.display = 'none';
+            learnMoreToggle.style.display = 'inline-block';
+            // Scroll back to toggle button
+            setTimeout(() => {
+                learnMoreToggle.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        });
+    }
 }
 
 async function checkExistingConnection() {
