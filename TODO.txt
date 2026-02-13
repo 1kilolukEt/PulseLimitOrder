@@ -1,0 +1,8 @@
+bot also I think rounds to tick is that necessary I think not
+
+show succesfull closed positions
+LIMIT and STOP orders
+Need to parallelize the bot
+do I need to check 100k Scanning blocks 25,654,479 to 25,754,479... 
+I think only at the beginning then every few blocks since there is 4s blocks so
+in 50 seconds u do the math + 10% error

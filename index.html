@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LP Limit Orders - 9mm Pro on PulseChain</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <h1>🎯 LP Limit Orders</h1>
+                <p class="subtitle">Automated LIMIT and STOP orders for your PulseChain 9mm Pro LP positions</p>
+            </div>
+            <div class="wallet-section">
+                <button id="connectWallet" class="btn btn-primary">Connect Wallet</button>
+                <div id="walletInfo" class="wallet-info" style="display: none;">
+                    <span id="walletAddress"></span>
+                    <button id="disconnectWallet" class="btn btn-secondary">Disconnect</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Network Info -->
+        <div id="networkInfo" class="network-info" style="display: none;">
+            <span id="networkName"></span>
+            <span id="networkStatus" class="status-dot"></span>
+        </div>
+
+        <!-- How It Works -->
+        <div id="howItWorks" class="info-section" style="display: none;">
+            <h3>🔒 How It Works - You Stay in Control</h3>
+
+            <div class="info-note" style="margin-bottom: 20px; background: rgba(59, 130, 246, 0.15);">
+                <strong>📊 Works as LIMIT and STOP Orders:</strong><br>
+                • <strong>LIMIT Order:</strong> Set price ABOVE current to take profits when price rises<br>
+                • <strong>STOP Order:</strong> Set price BELOW current to cut losses when price drops<br>
+                The bot monitors 24/7 and executes automatically when your target is reached.
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">🔑</div>
+                    <h4>You Keep Control</h4>
+                    <p>You maintain full ownership of your NFT. The contract can <strong>only</strong> execute the close position command when your limit order target is reached - nothing else.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">💰</div>
+                    <h4>100% Capital + 90% Fees</h4>
+                    <p>You receive <strong>100% of your LP capital</strong> and <strong>90% of earned fees</strong> when the order executes. Your funds are always yours.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🤖</div>
+                    <h4>10% Service Fee</h4>
+                    <p>A <strong>10% fee on earned fees only</strong> goes to the creator to maintain the automated bot that monitors prices 24/7 and executes your orders.</p>
+                </div>
+            </div>
+            <div class="info-note">
+                <strong>💡 Note:</strong> You pay 3,000 PLS upfront as a refundable deposit (covers execution gas). This is fully refunded when the order executes or is cancelled.
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main id="mainContent" style="display: none;">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="positions">My Positions</button>
+                <button class="tab-btn" data-tab="orders">Active Orders</button>
+                <button class="tab-btn" data-tab="history">History</button>
+            </div>
+
+            <!-- Positions Tab -->
+            <div id="positionsTab" class="tab-content active">
+                <div class="section-header">
+                    <h2>Your LP Positions</h2>
+                    <button id="refreshPositions" class="btn btn-secondary">Refresh</button>
+                </div>
+
+                <div id="positionsLoading" class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading positions...</p>
+                </div>
+
+                <div id="positionsList" class="positions-list"></div>
+
+                <div id="noPositions" class="empty-state" style="display: none;">
+                    <p>No LP positions found</p>
+                    <small>Create a position on <a href="https://dex.9mm.pro/liquidity" target="_blank" style="color: var(--primary); text-decoration: underline;">9mm DEX</a> to get started</small>
+                </div>
+            </div>
+
+            <!-- Orders Tab -->
+            <div id="ordersTab" class="tab-content">
+                <div class="section-header">
+                    <h2>Active Limit Orders</h2>
+                    <button id="refreshOrders" class="btn btn-secondary">Refresh</button>
+                </div>
+
+                <div id="ordersLoading" class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading orders...</p>
+                </div>
+
+                <div id="ordersList" class="orders-list"></div>
+
+                <div id="noOrders" class="empty-state" style="display: none;">
+                    <p>No active orders</p>
+                    <small>Create a limit order from your positions to automate profit-taking or stop-losses</small>
+                </div>
+            </div>
+
+            <!-- History Tab -->
+            <div id="historyTab" class="tab-content">
+                <div class="section-header">
+                    <h2>Execution History</h2>
+                    <button id="refreshHistory" class="btn btn-secondary">Refresh</button>
+                </div>
+
+                <div id="historyLoading" class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading history...</p>
+                </div>
+
+                <div id="historyList" class="orders-list"></div>
+
+                <div id="noHistory" class="empty-state" style="display: none;">
+                    <p>No execution history</p>
+                    <small>Your successfully executed orders will appear here</small>
+                </div>
+            </div>
+        </main>
+
+        <!-- Position Detail Modal -->
+        <div id="positionModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Position Details</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div id="positionDetails" class="modal-body"></div>
+            </div>
+        </div>
+
+        <!-- Create Order Modal -->
+        <div id="createOrderModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Create Limit Order</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="createOrderForm">
+                        <input type="hidden" id="orderNftId">
+
+                        <div class="form-group">
+                            <label>Position</label>
+                            <div id="orderPositionInfo" class="position-info-box"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="targetPrice">Target Price</label>
+                            <input type="number" id="targetPrice" step="any" required>
+                            <small id="targetPriceHelp"></small>
+                        </div>
+
+                        <div id="priceAdjustmentWarning" class="info-box" style="display: none; background: rgba(59, 130, 246, 0.1); border-color: #3b82f6; margin-bottom: 15px;">
+                            <strong>ℹ️ Price Precision Note:</strong><br>
+                            <span id="priceAdjustmentText"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Direction</label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="direction" value="above">
+                                    <span>Execute when price goes ABOVE target</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="direction" value="below" checked>
+                                    <span>Execute when price goes BELOW target</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="slippage">Slippage Tolerance (%)</label>
+                            <input type="number" id="slippage" value="5" min="0.1" max="50" step="0.1">
+                            <small>Default: 5%</small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="info-box">
+                                <strong>💰 Deposit:</strong> 3,000 PLS (fully refunded when order executes or is cancelled)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="info-box" style="background: rgba(16, 185, 129, 0.1); border-color: #10b981;">
+                                <strong>✅ You Keep Control:</strong><br>
+                                • 100% of LP capital returned to you<br>
+                                • 90% of earned fees go to you<br>
+                                • 10% of fees support the automated execution bot<br>
+                                • Your NFT stays yours - contract can only close position when target is reached
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="closeModal('createOrderModal')">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Create Order</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Contract: <span id="contractAddress">Loading...</span></p>
+            <p>Powered by 9mm DEX on PulseChain</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <script>
+        // Check if Web3 loaded properly
+        if (typeof Web3 === 'undefined') {
+            alert('Error: Web3 failed to load. Please check your internet connection and refresh the page.');
+            console.error('Web3 not loaded from CDN');
+        }
+    </script>
+    <script src="js/config.js"></script>
+    <script src="js/contract.js"></script>
+    <script src="js/wallet.js"></script>
+    <script src="js/positions.js"></script>
+    <script src="js/orders.js"></script>
+    <script src="js/history.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
