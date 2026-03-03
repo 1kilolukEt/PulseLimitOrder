@@ -174,8 +174,20 @@ window.openCreateOrderModal = openCreateOrderModal;
 window.cancelOrder = cancelOrder;
 window.closeModal = closeModal;
 
-// Auto-refresh data periodically
+// Auto-refresh data periodically — pauses while user is scrolling
+let userScrolling = false;
+let scrollIdleTimer = null;
+
+document.addEventListener('scroll', () => {
+    userScrolling = true;
+    clearTimeout(scrollIdleTimer);
+    scrollIdleTimer = setTimeout(() => {
+        userScrolling = false;
+    }, 3000); // resume 3 seconds after scrolling stops
+}, { passive: true });
+
 setInterval(() => {
+    if (userScrolling) return;
     if (walletService.isConnected()) {
         const activeTab = document.querySelector('.tab-content.active');
         if (activeTab && activeTab.id === 'positionsTab') {

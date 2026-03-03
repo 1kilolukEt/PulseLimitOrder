@@ -6,7 +6,10 @@ const CONFIG = {
     NETWORK_NAME: 'PulseChain',
 
     // Contracts
+    // V1 = original contract (uint256 targetPrice, has tick overflow bug)
+    // V2 = fixed contract  (int256 targetPrice) — fill in address once deployed
     LP_POSITION_MANAGER: '0x5CA8bdf54A61e4070a048689D631f7573bd77237',
+    LP_POSITION_MANAGER_V2: '', // set this once the new contract is deployed
     NFT_POSITION_MANAGER: '0xCC05bf158202b4F461Ede8843d76dcd7Bbad07f2',
     FACTORY: '0xe50DbDC88E87a2C92984d794bcF3D1d76f619C68',
 
@@ -93,19 +96,104 @@ const ABIS = {
             "inputs": [
                 {"name": "tokenId", "type": "uint256", "indexed": true},
                 {"name": "owner", "type": "address", "indexed": true},
-                {"name": "refund", "type": "uint256", "indexed": false}
+                {"name": "refundedGas", "type": "uint256", "indexed": false}
             ]
         },
         {
             "name": "PositionClosed",
             "type": "event",
             "inputs": [
-                {"name": "tokenId", "type": "uint256", "indexed": true},
-                {"name": "owner", "type": "address", "indexed": true},
-                {"name": "amount0", "type": "uint256", "indexed": false},
-                {"name": "amount1", "type": "uint256", "indexed": false},
-                {"name": "fee0", "type": "uint256", "indexed": false},
-                {"name": "fee1", "type": "uint256", "indexed": false}
+                {"name": "tokenId",     "type": "uint256", "indexed": true},
+                {"name": "owner",       "type": "address", "indexed": true},
+                {"name": "principal0",  "type": "uint256", "indexed": false},
+                {"name": "principal1",  "type": "uint256", "indexed": false},
+                {"name": "fees0",       "type": "uint256", "indexed": false},
+                {"name": "fees1",       "type": "uint256", "indexed": false},
+                {"name": "serviceFee0", "type": "uint256", "indexed": false},
+                {"name": "serviceFee1", "type": "uint256", "indexed": false}
+            ]
+        }
+    ],
+
+    // V2 ABI — identical to V1 except OrderCreated uses int256 targetPrice
+    // (PositionClosed and OrderCancelled signatures are unchanged between versions)
+    LPPositionManagerV2: [
+        {
+            "name": "orders",
+            "type": "function",
+            "inputs": [{"name": "tokenId", "type": "uint256"}],
+            "outputs": [
+                {"name": "owner",       "type": "address"},
+                {"name": "targetPrice", "type": "int256"},
+                {"name": "isAbove",     "type": "bool"},
+                {"name": "gasPayment",  "type": "uint256"},
+                {"name": "slippageBps", "type": "uint256"}
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "name": "createOrder",
+            "type": "function",
+            "inputs": [
+                {"name": "tokenId",     "type": "uint256"},
+                {"name": "targetPrice", "type": "int256"},
+                {"name": "isAbove",     "type": "bool"},
+                {"name": "slippageBps", "type": "uint256"}
+            ],
+            "outputs": [],
+            "stateMutability": "payable"
+        },
+        {
+            "name": "cancelOrder",
+            "type": "function",
+            "inputs": [{"name": "tokenId", "type": "uint256"}],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "name": "closePosition",
+            "type": "function",
+            "inputs": [
+                {"name": "tokenId",         "type": "uint256"},
+                {"name": "expectedAmount0", "type": "uint256"},
+                {"name": "expectedAmount1", "type": "uint256"}
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "name": "OrderCreated",
+            "type": "event",
+            "inputs": [
+                {"name": "tokenId",     "type": "uint256", "indexed": true},
+                {"name": "owner",       "type": "address", "indexed": true},
+                {"name": "targetPrice", "type": "int256",  "indexed": false},
+                {"name": "isAbove",     "type": "bool",    "indexed": false},
+                {"name": "gasPayment",  "type": "uint256", "indexed": false},
+                {"name": "slippageBps", "type": "uint256", "indexed": false}
+            ]
+        },
+        {
+            "name": "OrderCancelled",
+            "type": "event",
+            "inputs": [
+                {"name": "tokenId",    "type": "uint256", "indexed": true},
+                {"name": "owner",      "type": "address", "indexed": true},
+                {"name": "refundedGas","type": "uint256", "indexed": false}
+            ]
+        },
+        {
+            "name": "PositionClosed",
+            "type": "event",
+            "inputs": [
+                {"name": "tokenId",     "type": "uint256", "indexed": true},
+                {"name": "owner",       "type": "address", "indexed": true},
+                {"name": "principal0",  "type": "uint256", "indexed": false},
+                {"name": "principal1",  "type": "uint256", "indexed": false},
+                {"name": "fees0",       "type": "uint256", "indexed": false},
+                {"name": "fees1",       "type": "uint256", "indexed": false},
+                {"name": "serviceFee0", "type": "uint256", "indexed": false},
+                {"name": "serviceFee1", "type": "uint256", "indexed": false}
             ]
         }
     ],

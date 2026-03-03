@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LP Limit Orders - 9mm Pro on PulseChain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -11,7 +13,7 @@
         <!-- Header -->
         <header>
             <div class="header-content">
-                <h1>🎯 LP Limit Orders</h1>
+                <h1><span class="title-emoji">🎯</span> <span class="title-text">LP Limit Orders</span></h1>
                 <p class="subtitle">Automated LIMIT and STOP orders for your PulseChain 9mm Pro LP positions</p>
             </div>
             <div class="wallet-section">
@@ -31,100 +33,7 @@
 
         <!-- How It Works -->
         <div id="howItWorks" class="info-section">
-            <h3>🔒 How It Works - You Stay in Control</h3>
-
-            <div class="info-note" style="margin-bottom: 20px; background: rgba(59, 130, 246, 0.15);">
-                <strong>📊 Works as LIMIT and STOP Orders:</strong><br>
-                • <strong>LIMIT Order:</strong> Set price ABOVE current to take profits when price rises<br>
-                • <strong>STOP Order:</strong> Set price BELOW current to cut losses when price drops<br>
-                The bot monitors 24/7 and executes automatically when your target is reached.
-            </div>
-
-            <!-- Security Guarantee -->
-            <div class="info-note" style="margin-bottom: 30px; background: rgba(16, 185, 129, 0.15); border-color: #10b981;">
-                <strong>🔐 Security Guarantee - Your Funds Are Safe:</strong><br>
-                <br>
-                <strong>What the contract CAN do:</strong><br>
-                ✅ Close your LP position when your target price is reached<br>
-                ✅ Send you 100% of your capital + 90% of fees<br>
-                ✅ Take the 3,000 PLS execution deposit (covers bot's gas cost)<br>
-                ✅ Take 10% service fee from earned LP fees only (not your capital)<br>
-                <br>
-                <strong>What the contract CANNOT do:</strong><br>
-                ❌ <strong>Cannot</strong> transfer your NFT to anyone else<br>
-                ❌ <strong>Cannot</strong> execute if target price not reached<br>
-                ❌ <strong>Cannot</strong> take any of your LP capital<br>
-                ❌ <strong>Cannot</strong> close your position until you approve it<br>
-                <br>
-                <strong>You keep full control:</strong> You own the NFT. You can cancel the order anytime and get your 3,000 PLS back. The contract only has permission to close (not transfer), and only when your chosen target price is reached.
-            </div>
-
-            <!-- Use Cases -->
-            <h3 style="margin-top: 30px; margin-bottom: 20px;">💡 Advanced Use Cases</h3>
-
-            <div class="info-grid">
-                <div class="info-card">
-                    <div class="info-icon">💱</div>
-                    <h4>LP as Buy/Sell Orders</h4>
-                    <p><strong>One-sided LP positions</strong> work like limit orders:</p>
-                    <ul style="text-align: left; margin-top: 10px; font-size: 0.9em; line-height: 1.6;">
-                        <li><strong>Want to BUY PLSX?</strong> Create LP position with <strong>only DAI</strong>, set range BELOW current price. When price drops into your range, you'll buy PLSX. Set close target at BOTTOM to keep PLSX if price rebounds.</li>
-                        <li><strong>Want to SELL PLSX?</strong> Create LP position with <strong>only PLSX</strong>, set range ABOVE current price. When price rises, you'll sell PLSX. Set close target at TOP to lock profits if price reverses.</li>
-                    </ul>
-                    <p style="margin-top: 10px;"><em>Bonus: You earn LP fees while waiting!</em></p>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">🪜</div>
-                    <h4>Ladder Strategy: Accumulate & Distribute</h4>
-                    <p><strong>Advanced:</strong> Use multiple positions to scale in and out:</p>
-                    <ul style="text-align: left; margin-top: 10px; font-size: 0.9em; line-height: 1.6;">
-                        <li><strong>Accumulate ladder:</strong> Create multiple LPs with DAI below current (e.g., $1900-$1950, $1800-$1850). Each closes at BOTTOM. Buy on dips, keep if price rebounds!</li>
-                        <li><strong>Distribute ladder:</strong> Create multiple LPs with WETH above current (e.g., $4800-$4900, $5600-$5700). Each closes at TOP. Sell on rally, lock profits in tranches!</li>
-                    </ul>
-                    <p style="margin-top: 10px;"><em>Scale in/out gradually with 3-5 positions!</em></p>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">🛡️</div>
-                    <h4>IL Protection for Yield Farmers</h4>
-                    <p><strong>Stop impermanent loss</strong> while farming:</p>
-                    <ul style="text-align: left; margin-top: 10px; font-size: 0.9em; line-height: 1.6;">
-                        <li>Farming PLSX/DAI for yield? Set a limit order to close if price moves 20% in either direction.</li>
-                        <li>This locks in your profit and protects against <strong>impermanent loss</strong> during big price swings.</li>
-                        <li>You get yield until the limit order triggers, then exit with profits intact.</li>
-                    </ul>
-                    <p style="margin-top: 10px;"><em>Example: LP at $1.00, close if price hits $0.80 or $1.20</em></p>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">🎯</div>
-                    <h4>Automated Take Profit</h4>
-                    <p><strong>Set it and forget it:</strong></p>
-                    <ul style="text-align: left; margin-top: 10px; font-size: 0.9em; line-height: 1.6;">
-                        <li>Providing liquidity while price is favorable? Set a target to auto-close when price moves against you.</li>
-                        <li>No need to monitor 24/7 - the bot watches for you and executes instantly.</li>
-                        <li>Perfect for concentrated liquidity positions where you want to exit at specific price levels.</li>
-                    </ul>
-                    <p style="margin-top: 10px;"><em>Sleep well knowing your position will close automatically!</em></p>
-                </div>
-            </div>
-
-            <!-- How LP Positions Become One-Sided -->
-            <div class="info-note" style="margin-top: 30px; background: rgba(168, 85, 247, 0.15); border-color: #a855f7;">
-                <strong>📚 Understanding One-Sided LP Positions:</strong><br>
-                <br>
-                When you create a concentrated liquidity position on 9mm/Uniswap V3, you set a <strong>price range</strong>. As price moves, your position composition changes:
-                <br><br>
-                <strong>Price BELOW your range:</strong> Position converts to 100% token1 (e.g., all DAI)<br>
-                <strong>Price WITHIN your range:</strong> Position has both tokens (earning fees)<br>
-                <strong>Price ABOVE your range:</strong> Position converts to 100% token0 (e.g., all PLSX)
-                <br><br>
-                <strong>This is powerful:</strong> You can create a position with only DAI, set a narrow range below current price, and it acts as a <strong>buy order</strong> that earns fees while waiting! When price enters your range, you automatically buy PLSX, then our limit order can auto-close at your target profit price.
-            </div>
-
-            <!-- Basic Info Cards -->
-            <h3 style="margin-top: 30px; margin-bottom: 20px;">⚙️ How The Service Works</h3>
+            <h3>⚙️ How The Service Works</h3>
 
             <div class="info-grid">
                 <div class="info-card">
@@ -149,219 +58,171 @@
             </div>
 
             <!-- Connect to Start -->
-            <div class="info-note" style="margin-top: 30px; text-align: center; background: rgba(59, 130, 246, 0.15); border-color: #3b82f6;">
+            <div class="info-note" style="margin-top: 20px; text-align: center; background: rgba(59, 130, 246, 0.15); border-color: #3b82f6;">
                 <strong>Ready to start?</strong> Connect your wallet above to view your LP positions and create limit orders!
             </div>
 
             <!-- Learn More Toggle -->
-            <div style="text-align: center; margin-top: 30px;">
+            <div style="text-align: center; margin-top: 24px;">
                 <button id="learnMoreToggle" class="btn btn-secondary" style="padding: 12px 30px;">
-                    📚 Learn More - Complete Examples & Strategies
+                    📚 Learn More — Strategies, Security &amp; Examples
                 </button>
             </div>
 
-            <!-- Detailed Examples (Hidden by default) -->
+            <!-- Everything else hidden by default -->
             <div id="learnMoreContent" style="display: none; margin-top: 30px; padding-top: 30px; border-top: 2px solid var(--border);">
-                <h3 style="margin-bottom: 20px;">📚 Complete Strategy Examples</h3>
 
-                <!-- Example 1: Accumulate Low with LP Ladder -->
+                <!-- LIMIT / STOP explanation -->
+                <div class="info-note" style="margin-bottom: 20px; background: rgba(59, 130, 246, 0.15);">
+                    <strong>📊 Works as LIMIT and STOP Orders:</strong><br>
+                    • <strong>LIMIT Order:</strong> Set price ABOVE current to take profits when price rises<br>
+                    • <strong>STOP Order:</strong> Set price BELOW current to cut losses when price drops<br>
+                    The bot monitors 24/7 and executes automatically when your target is reached.
+                </div>
+
+                <!-- Security Guarantee -->
+                <div class="info-note" style="margin-bottom: 30px; background: rgba(16, 185, 129, 0.15); border-color: #10b981;">
+                    <strong>🔐 Security Guarantee - Your Funds Are Safe:</strong><br>
+                    <br>
+                    <strong>What the contract CAN do:</strong><br>
+                    ✅ Close your LP position when your target price is reached<br>
+                    ✅ Send you 100% of your capital + 90% of fees<br>
+                    ✅ Take the 3,000 PLS execution deposit (covers bot's gas cost)<br>
+                    ✅ Take 10% service fee from earned LP fees only (not your capital)<br>
+                    <br>
+                    <strong>What the contract CANNOT do:</strong><br>
+                    ❌ <strong>Cannot</strong> transfer your NFT to anyone else<br>
+                    ❌ <strong>Cannot</strong> execute if target price not reached<br>
+                    ❌ <strong>Cannot</strong> take any of your LP capital<br>
+                    ❌ <strong>Cannot</strong> close your position until you approve it<br>
+                    <br>
+                    <strong>You keep full control:</strong> You own the NFT. You can cancel the order anytime and get your 3,000 PLS back. The contract only has permission to close (not transfer), and only when your chosen target price is reached.
+                </div>
+
+                <!-- Advanced Use Cases -->
+                <h3 style="margin-bottom: 20px;">💡 Advanced Use Cases</h3>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">💱</div>
+                        <h4>LP as Buy/Sell Orders</h4>
+                        <p><strong>One-sided LP positions</strong> work like limit orders:</p>
+                        <ul style="text-align: left; margin-top: 10px; font-size: 0.9em; line-height: 1.6;">
+                            <li><strong>Want to BUY PLSX?</strong> Create LP position with <strong>only DAI</strong>, set range BELOW current price. When price drops into your range, you'll buy PLSX. Set close target at BOTTOM to keep PLSX if price rebounds.</li>
+                            <li><strong>Want to SELL PLSX?</strong> Create LP position with <strong>only PLSX</strong>, set range ABOVE current price. When price rises, you'll sell PLSX. Set close target at TOP to lock profits if price reverses.</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><em>Bonus: You earn LP fees while waiting!</em></p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">🪜</div>
+                        <h4>Ladder Strategy: Accumulate &amp; Distribute</h4>
+                        <p><strong>Advanced:</strong> Use multiple positions to scale in and out:</p>
+                        <ul style="text-align: left; margin-top: 10px; font-size: 0.9em; line-height: 1.6;">
+                            <li><strong>Accumulate ladder:</strong> Create multiple LPs with DAI below current (e.g., $1900-$1950, $1800-$1850). Each closes at BOTTOM. Buy on dips, keep if price rebounds!</li>
+                            <li><strong>Distribute ladder:</strong> Create multiple LPs with WETH above current (e.g., $4800-$4900, $5600-$5700). Each closes at TOP. Sell on rally, lock profits in tranches!</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><em>Scale in/out gradually with 3-5 positions!</em></p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">🛡️</div>
+                        <h4>IL Protection for Yield Farmers</h4>
+                        <p><strong>Stop impermanent loss</strong> while farming:</p>
+                        <ul style="text-align: left; margin-top: 10px; font-size: 0.9em; line-height: 1.6;">
+                            <li>Farming PLSX/DAI for yield? Set a limit order to close if price moves 20% in either direction.</li>
+                            <li>This locks in your profit and protects against <strong>impermanent loss</strong> during big price swings.</li>
+                            <li>You get yield until the limit order triggers, then exit with profits intact.</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><em>Example: LP at $1.00, close if price hits $0.80 or $1.20</em></p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">🎯</div>
+                        <h4>Automated Take Profit</h4>
+                        <p><strong>Set it and forget it:</strong></p>
+                        <ul style="text-align: left; margin-top: 10px; font-size: 0.9em; line-height: 1.6;">
+                            <li>Providing liquidity while price is favorable? Set a target to auto-close when price moves against you.</li>
+                            <li>No need to monitor 24/7 - the bot watches for you and executes instantly.</li>
+                            <li>Perfect for concentrated liquidity positions where you want to exit at specific price levels.</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><em>Sleep well knowing your position will close automatically!</em></p>
+                    </div>
+                </div>
+
+                <!-- How LP Positions Become One-Sided -->
+                <div class="info-note" style="margin-top: 30px; background: rgba(168, 85, 247, 0.15); border-color: #a855f7;">
+                    <strong>📚 Understanding One-Sided LP Positions:</strong><br>
+                    <br>
+                    When you create a concentrated liquidity position on 9mm/Uniswap V3, you set a <strong>price range</strong>. As price moves, your position composition changes:
+                    <br><br>
+                    <strong>Price BELOW your range:</strong> Position converts to 100% token1 (e.g., all DAI)<br>
+                    <strong>Price WITHIN your range:</strong> Position has both tokens (earning fees)<br>
+                    <strong>Price ABOVE your range:</strong> Position converts to 100% token0 (e.g., all PLSX)
+                    <br><br>
+                    <strong>This is powerful:</strong> You can create a position with only DAI, set a narrow range below current price, and it acts as a <strong>buy order</strong> that earns fees while waiting! When price enters your range, you automatically buy PLSX, then our limit order can auto-close at your target profit price.
+                </div>
+
+                <!-- Complete Strategy Examples -->
+                <h3 style="margin-top: 30px; margin-bottom: 20px;">📚 Complete Strategy Examples</h3>
+
                 <div class="info-card" style="margin-bottom: 20px;">
                     <h4 style="color: var(--primary);">Example 1: Accumulate WETH on Dip (Ladder Strategy)</h4>
                     <p><strong>Goal:</strong> Accumulate WETH as price drops, keep it if price rebounds</p>
-
                     <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 0.9em;">
                         <strong>Current price:</strong> WETH = $2,000<br><br>
-
                         <strong>Step 1:</strong> Create accumulation LP on 9mm DEX<br>
-                        • Deposit: 50,000 DAI (only)<br>
+                        • Deposit: 10,000 DAI (only)<br>
                         • Range: $1,900 to $1,950 (BELOW current)<br>
-                        • Position inactive (will activate when price drops)<br><br>
-
+                        • Position inactive until price drops into range<br><br>
                         <strong>Step 2:</strong> Price drops into your range<br>
-                        • Price drops to $1,950 → Position activates<br>
-                        • As price falls from $1,950 to $1,900, your DAI converts to WETH<br>
-                        • You're buying WETH + earning fees! 🎉<br><br>
-
+                        • Price hits $1,950 → Position activates<br>
+                        • As price falls from $1,950 → $1,900, your DAI converts to WETH<br>
+                        • Average fill price = √($1,900 × $1,950) ≈ <strong>$1,924.84</strong><br>
+                        • You receive ≈ <strong>5.19 WETH</strong> (10,000 ÷ 1,924.84) + fees! 🎉<br><br>
                         <strong>Step 3:</strong> Set limit order at BOTTOM (on this website)<br>
                         • Target: $1,900 (BELOW - at bottom of range)<br>
-                        • Direction: Close when price goes BELOW $1,900<br>
                         • <strong>Why bottom?</strong> If price rebounds, you keep the WETH!<br><br>
-
-                        <strong>Step 4A:</strong> Price hits $1,900 (continues down)<br>
-                        • Bot closes position<br>
-                        • You receive: ~25 WETH + fees<br>
-                        • Protected from further downside ✅<br><br>
-
-                        <strong>Step 4B:</strong> Price rebounds before hitting $1,900<br>
-                        • Limit order never triggers<br>
-                        • You keep the WETH you accumulated<br>
-                        • Now create SELL positions above! 📈
+                        <strong>Step 4A:</strong> Price hits $1,900 (continues down) → Bot closes, you keep ~5.19 WETH + fees earned ✅<br>
+                        <strong>Step 4B:</strong> Price rebounds before $1,900 → Order never triggers, you keep the WETH + fees earned 📈
                     </div>
-
-                    <p><em>Key insight: Close at BOTTOM so you keep WETH if price recovers!</em></p>
+                    <p><em>Key insight: Average fill = geometric mean of range bounds √(Pa × Pb), not the midpoint.</em></p>
                 </div>
 
-                <!-- Example 2: IL Protection -->
                 <div class="info-card" style="margin-bottom: 20px;">
                     <h4 style="color: var(--success);">Example 2: Yield Farm with IL Protection</h4>
                     <p><strong>Goal:</strong> Farm 60% APY, but limit impermanent loss to 5%</p>
-
                     <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 0.9em;">
                         <strong>Current price:</strong> PLSX = $0.000100<br><br>
-
-                        <strong>Step 1:</strong> Create balanced LP on 9mm DEX<br>
-                        • Deposit: 5,000 DAI + 50,000,000 PLSX<br>
-                        • Range: $0.000080 to $0.000120 (±20%)<br>
-                        • Expected APY: 60%<br><br>
-
-                        <strong>Step 2:</strong> Set protective limit order<br>
-                        • Target: $0.000076 (24% drop)<br>
-                        • This limits IL to ~4%<br><br>
-
-                        <strong>Scenario A - Price stable for 3 months:</strong><br>
-                        • Earned: 60% APY × 3/12 = 15% 📈<br>
-                        • IL: 0% (price didn't move)<br>
-                        • Net: +15% WIN!<br><br>
-
-                        <strong>Scenario B - Price drops 25% after 1 month:</strong><br>
-                        • Earned: 60% APY × 1/12 = 5%<br>
-                        • IL: -4% (bot auto-closed)<br>
-                        • Net: +1% (small win, avoided major IL!)<br><br>
-
-                        <strong>Scenario C - No limit order set:</strong><br>
-                        • Price drops 50%<br>
-                        • IL: -20% 😱<br>
-                        • Net: -20% + fees (BIG LOSS)
+                        Deposit: 5,000 DAI + 50,000,000 PLSX · Range: $0.000080–$0.000120 (±20%) · Expected APY: 60%<br>
+                        Set protective limit order at $0.000076 (24% drop → limits IL to ~4%)<br><br>
+                        <strong>Scenario A - Price stable for 3 months:</strong> +15% yield, 0% IL → Net: +15% WIN!<br>
+                        <strong>Scenario B - Price drops 25% after 1 month:</strong> +5% yield, -4% IL → Net: +1% (avoided major IL!)<br>
+                        <strong>Scenario C - No limit order, price drops 50%:</strong> -20% IL 😱
                     </div>
-
                     <p><em>Key insight: Capture yield while stable, exit automatically before major IL!</em></p>
                 </div>
 
-                <!-- Example 3: Distribute High with LP Ladder -->
                 <div class="info-card" style="margin-bottom: 20px;">
                     <h4 style="color: var(--warning);">Example 3: Distribute WETH on Rally (Ladder Strategy)</h4>
                     <p><strong>Goal:</strong> Sell WETH as price rises, take profit if price reverses</p>
-
                     <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 0.9em;">
-                        <strong>Starting position:</strong> You own 25 WETH (from accumulation)<br>
-                        <strong>Current price:</strong> $3,000<br><br>
-
-                        <strong>Step 1:</strong> Create multiple SELL positions on 9mm DEX<br>
-                        <strong>Position A:</strong> 5 WETH, range $4,800-$4,900<br>
-                        <strong>Position B:</strong> 5 WETH, range $5,600-$5,700<br>
-                        <strong>Position C:</strong> 5 WETH, range $7,200-$7,300<br>
-                        <strong>Position D:</strong> 10 WETH, range $9,000-$11,000<br>
-                        • All positions inactive (will activate on rally)<br><br>
-
-                        <strong>Step 2:</strong> Set limit orders at TOP of each range<br>
-                        • Position A: Close at $4,900 (ABOVE)<br>
-                        • Position B: Close at $5,700 (ABOVE)<br>
-                        • Position C: Close at $7,300 (ABOVE)<br>
-                        • Position D: Close at $11,000 (ABOVE)<br>
-                        • <strong>Why top?</strong> Take profit if price reverses!<br><br>
-
-                        <strong>Step 3A:</strong> Price rallies to $5,000<br>
-                        • Position A activates ($4,800-$4,900)<br>
-                        • Your WETH converts to DAI as price rises<br>
-                        • Price hits $4,900 → Bot closes Position A<br>
-                        • You receive: ~$24,500 DAI from 5 WETH + fees 💰<br><br>
-
-                        <strong>Step 3B:</strong> Price continues to $7,500<br>
-                        • Position B triggers and closes at $5,700<br>
-                        • Position C triggers and closes at $7,300<br>
-                        • You receive: ~$65,000 total from 15 WETH<br>
-                        • Position D still waiting at $9,000+<br><br>
-
-                        <strong>Step 3C:</strong> Price reverses at $8,000 (never hits Position D)<br>
-                        • Position D never triggered<br>
-                        • You still own 10 WETH (75% of stack sold)<br>
-                        • Can recreate accumulation positions on dip! 🔄
+                        Create 4 SELL positions above current price, each with a limit order at the TOP of its range.<br>
+                        As price rallies each position triggers and locks in profits in tranches.<br>
+                        Any positions price never reaches → you still own the WETH.
                     </div>
-
                     <p><em>Ladder strategy: Sell in tranches, keep some if top isn't reached!</em></p>
-                </div>
-
-                <!-- Ladder Strategy Visualization -->
-                <div class="info-note" style="margin-top: 30px; background: rgba(245, 158, 11, 0.15); border-color: #f59e0b;">
-                    <strong>🪜 Complete Ladder Strategy Visualization</strong><br><br>
-
-                    <div style="font-family: monospace; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; font-size: 0.85em; line-height: 1.8;">
-<strong>SELL LADDERS (Above current price)</strong><br>
-$11,000 ═══╗ 10 WETH → Close at $11,000<br>
-$9,000  ═══╝<br>
-<br>
-$7,300  ═══╗ 5 WETH → Close at $7,300<br>
-$7,200  ═══╝<br>
-<br>
-$5,700  ═══╗ 5 WETH → Close at $5,700<br>
-$5,600  ═══╝<br>
-<br>
-$4,900  ═══╗ 5 WETH → Close at $4,900<br>
-$4,800  ═══╝<br>
-<br>
-────────────────────────────────<br>
-<strong>→ CURRENT PRICE: $2,000 ←</strong><br>
-────────────────────────────────<br>
-<br>
-$1,950  ═══╗ 50k DAI → Close at $1,900<br>
-$1,900  ═══╝<br>
-<br>
-$1,450  ═══╗ 50k DAI → Close at $1,400<br>
-$1,400  ═══╝<br>
-<br>
-<strong>BUY LADDERS (Below current price)</strong>
-                    </div>
-                    <br>
-                    <strong>How it works:</strong><br>
-                    • <strong>Price drops:</strong> Buy ladders activate, accumulate tokens + fees. Close at BOTTOM to keep tokens if price rebounds.<br>
-                    • <strong>Price rises:</strong> Sell ladders activate, distribute tokens + fees. Close at TOP to lock profits if price reverses.<br>
-                    • <strong>Range trading:</strong> Both sides can trigger in volatile markets - you earn fees coming and going!<br><br>
-
-                    <strong>Why close at bottom/top?</strong><br>
-                    • Accumulation (bottom): If price bounces, you keep the tokens you bought<br>
-                    • Distribution (top): If price drops, you've already taken profits<br>
-                    • This prevents "giving back" your trades on reversals
-                </div>
-
-                <!-- Technical Explanation -->
-                <div class="info-note" style="margin-top: 20px; background: rgba(147, 51, 234, 0.15); border-color: #9333ea;">
-                    <strong>🔬 Technical: How One-Sided LP Positions Work</strong><br><br>
-
-                    In Uniswap V3 / 9mm Pro, you choose a <strong>price range</strong> for your liquidity. As price moves, your position composition changes:<br><br>
-
-                    <strong>Price BELOW range → 100% token1 (e.g., all DAI)</strong><br>
-                    <strong>Price WITHIN range → Mixed tokens (earning fees!)</strong><br>
-                    <strong>Price ABOVE range → 100% token0 (e.g., all WETH)</strong><br><br>
-
-                    <strong>Accumulation Example:</strong> You create LP with 50,000 DAI, range $1,900-$1,950, current price $2,000<br>
-                    • Price is above your range → Position stays 100% DAI<br>
-                    • Price drops to $1,950 → Position activates!<br>
-                    • As price falls from $1,950 to $1,900, DAI converts to WETH<br>
-                    • At $1,900, you now own ~25 WETH<br>
-                    • You earned fees during every swap! 💰<br>
-                    • Limit order closes at $1,900 → You keep WETH if price rebounds<br><br>
-
-                    This is why LP positions are better than CEX limit orders - you <strong>earn fees while waiting and during execution</strong>!
                 </div>
 
                 <!-- Fee Breakdown -->
                 <div class="info-note" style="margin-top: 20px;">
                     <strong>💵 Fee Breakdown Example</strong><br><br>
-
                     <strong>Scenario:</strong> You farm $10,000 LP for 2 months, earn $200 in fees, close with our limit order<br><br>
-
-                    <strong>What you receive:</strong><br>
-                    • $10,000 - Your full capital (100%)<br>
-                    • $180 - Your share of fees (90%)<br>
-                    • Total: $10,180<br><br>
-
-                    <strong>Service fees:</strong><br>
-                    • $20 - Service fee (10% of $200 fees, NOT your capital)<br>
-                    • 3,000 PLS - Kept by bot (covers gas)<br><br>
-
-                    <strong>Net profit:</strong> ~$157 after fees<br><br>
-
-                    <em>Note: The 10% service fee ONLY applies to LP trading fees earned, never your principal!</em>
+                    • $10,000 — Your full capital (100%)<br>
+                    • $180 — Your share of fees (90%)<br>
+                    • $20 — Service fee (10% of fees only, NOT capital)<br>
+                    • 3,000 PLS — Kept by bot (covers gas)<br><br>
+                    <em>The 10% service fee ONLY applies to LP trading fees earned, never your principal!</em>
                 </div>
 
                 <!-- Quick Tips -->

@@ -16,6 +16,11 @@ class ContractService {
             CONFIG.LP_POSITION_MANAGER
         );
 
+        // V2 contract (fixed int256 targetPrice) — only initialised if address is set
+        this.contracts.lpManagerV2 = CONFIG.LP_POSITION_MANAGER_V2
+            ? new this.web3.eth.Contract(ABIS.LPPositionManagerV2, CONFIG.LP_POSITION_MANAGER_V2)
+            : null;
+
         this.contracts.nftManager = new this.web3.eth.Contract(
             ABIS.NFTPositionManager,
             CONFIG.NFT_POSITION_MANAGER
@@ -297,24 +302,42 @@ class ContractService {
         try {
             console.log(`Scanning blocks ${fromBlock} to ${currentBlock} for order events...`);
 
-            // Fetch all three event types in parallel (very efficient with indexed owner)
-            const [createdEvents, cancelledEvents, closedEvents] = await Promise.all([
-                this.contracts.lpManager.getPastEvents('OrderCreated', {
-                    filter: { owner: ownerAddress }, // Uses indexed parameter
+            // Build list of contracts to query (V1 always present, V2 only if deployed)
+            const contractsToQuery = [this.contracts.lpManager];
+            if (this.contracts.lpManagerV2) {
+                contractsToQuery.push(this.contracts.lpManagerV2);
+            }
+
+            // Fetch events from all contracts in parallel
+            const eventFetches = contractsToQuery.flatMap(contract => [
+                contract.getPastEvents('OrderCreated', {
+                    filter: { owner: ownerAddress },
                     fromBlock,
                     toBlock: 'latest'
                 }),
-                this.contracts.lpManager.getPastEvents('OrderCancelled', {
-                    filter: { owner: ownerAddress }, // Uses indexed parameter
+                contract.getPastEvents('OrderCancelled', {
+                    filter: { owner: ownerAddress },
                     fromBlock,
                     toBlock: 'latest'
                 }),
-                this.contracts.lpManager.getPastEvents('PositionClosed', {
-                    filter: { owner: ownerAddress }, // Uses indexed parameter
+                contract.getPastEvents('PositionClosed', {
+                    filter: { owner: ownerAddress },
                     fromBlock,
                     toBlock: 'latest'
                 })
             ]);
+
+            const allResults = await Promise.all(eventFetches);
+
+            // Merge results across contracts: results come in groups of 3 per contract
+            const createdEvents = [];
+            const cancelledEvents = [];
+            const closedEvents = [];
+            for (let i = 0; i < contractsToQuery.length; i++) {
+                createdEvents.push(...allResults[i * 3]);
+                cancelledEvents.push(...allResults[i * 3 + 1]);
+                closedEvents.push(...allResults[i * 3 + 2]);
+            }
 
             console.log(`Found ${createdEvents.length} OrderCreated, ${cancelledEvents.length} OrderCancelled, ${closedEvents.length} PositionClosed events`);
 
